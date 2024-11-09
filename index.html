@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Romântica</title>
+    <style>
+        /* Estilo de fundo */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f2e1c1;
+            font-family: 'Garamond', serif;
+        }
+
+        /* Contêiner principal */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Estrutura dos cards e carta */
+        .center-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Estilo da carta */
+        .scroll {
+            background: url('carta.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            border: 2px solid #8B4513;
+            margin-top: 20px; /* Desloca a carta para baixo */
+        }
+
+        /* Título e Texto */
+        h1 {
+            font-size: 2.5em;
+            color: #4B2E2E;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1.3em;
+            color: #3a271a;
+            line-height: 1.6;
+            text-indent: 40px;
+        }
+
+        /* Estilo do botão */
+        .button {
+            display: inline-block;
+            margin-top: 10px; /* Subir o botão para ficar mais próximo da carta */
+            padding: 10px 30px;
+            background-color: #8B4513;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #5A3210;
+        }
+
+        /* Estilo dos cards */
+        .card {
+            background-color: #fff;
+            width: 150px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #8B4513;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .card p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #4B2E2E;
+        }
+
+        /* Card inferior */
+        .bottom-card {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Animação suave ao exibir a carta */
+        .scroll {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+
+
+        <div class="center-content">
+            <!-- Card à esquerda da carta -->
+            <div class="card" id="cardLeft">
+                <img src="img2.jpg" alt="Foto 2">
+                <p>Ainda tem</p>
+            </div>
+
+            <!-- Carta centralizada -->
+            <div class="scroll">
+                <h1>Evelyn</h1>
+                <p>Carl Sagan já dizia: "Diante da vastidão do tempo e da imensidão do universo, é um imenso prazer para mim dividir um planeta e uma época com você."</p>
+                <button class="button" onclick="showSurprise()">Admiro você?</button>
+            </div>
+
+            <!-- Card à direita da carta -->
+            <div class="card" id="cardRight">
+                <img src="img3.jpg" alt="Foto 1">
+                <p>Dúvidas?</p>
+            </div>
+        </div>
+
+        <!-- Botão para reproduzir a música -->
+        <button class="button" onclick="playMusic()">Eu</button>
+
+        <!-- Card inferior abaixo da carta -->
+        <div class="bottom-card" id="bottomCard">
+            <div class="card">
+                <img src="img3.jpg" alt="Foto 3">
+                <p>Apaixonado pelo seu sorriso</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicionando o áudio de fundo -->
+    <audio id="backgroundMusic" src="viajei.mp3" loop></audio>
+
+    <script>
+        function showSurprise() {
+            // Exibir os cards laterais e o card inferior
+            document.getElementById("cardLeft").style.opacity = 1;
+            document.getElementById("cardRight").style.opacity = 1;
+            document.getElementById("bottomCard").style.opacity = 1;
+        }
+
+        function playMusic() {
+            const music = document.getElementById("backgroundMusic");
+            // Verificar se o áudio já está tocando antes de dar play
+            if (music.paused) {
+                music.play().catch(error => {
+                    console.error("Erro ao tentar tocar a música:", error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
